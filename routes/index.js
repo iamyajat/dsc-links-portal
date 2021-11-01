@@ -80,7 +80,7 @@ router.get("/insta/hash", async(req, res) => {
                 let finalURL = baseURL + process.env.INSTAGRAM_ID + "&q=" + hashtag + "&access_token=" + process.env.ACCESS_TOKEN;
                 const resp = await axios.get(finalURL)
                 let hashtagID = resp.data.data[0].id
-                let secondUrl = "https://graph.facebook.com/" + hashtagID + "/recent_media?user_id=" + process.env.INSTAGRAM_ID + "&fields=permalink,caption,comments_count,like_count,media_type,media_url&access_token=" + process.env.ACCESS_TOKEN;
+                let secondUrl = "https://graph.facebook.com/" + hashtagID + "/top_media?user_id=" + process.env.INSTAGRAM_ID + "&fields=permalink,caption,comments_count,like_count,media_type,media_url&access_token=" + process.env.ACCESS_TOKEN;
                 const final = await axios.get(secondUrl)
                 client.set(
                     `hash:${hashtag}`,
